@@ -4,7 +4,7 @@ import select
 class SCPI(object):
     
     _socket = None
-    _chunk = 128 # buf size
+    _chunk = 4 * 1024 # buf size
     _vocal = False
     _timeout = 0.150 # Float timeout in secs
     
@@ -53,8 +53,11 @@ class SCPI(object):
 
             if r: # socket readable
                 data = self._socket.recv(self._chunk)
+                length=len(data)
                 if data: 
                     buf += data
+                    if data[length-1] == "\n":
+                        data = False
                 else: # Socket readable but there is no data, disconnected.
                     data = False
                     self.close()
@@ -85,4 +88,3 @@ class SCPI(object):
     def __del__(self):    
         if self._socket is not None: self._socket.close()
         self._socket = None
-

@@ -27,13 +27,18 @@ The output looks like
 
 There is a more complete example for an Agilent 33521B Waveform Generator in the python notebook.
 
-## TODO
+## Notes
 
-Integrating this with pyvisa would be nice, but so far I have no need. Also, tests? 
+This is code is not currently used by me and probably doesn't work on Python 3,
+but is probably portable. Pull requests welcome!
 
-So far, this is "works for me" software.
 
 ## License
 
 Copyright (c) 2013, Anton Loukianov, BSD 3-clause
+
+Thank you to the contributors:
+
+2017-06-05 Christian Liebhardt: check for newline termination instead of waiting for
+timeout when parsing responses
 
